@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<ModelDocumentManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Documents>
+    <Document FullPath="C:\Users\Eric!\documents\visual studio 2013\Projects\Invoices\Invoices\Invoices.DesktopClient\Properties\ApplicationData\Invoices.lsml" Checksum="2992FB234097BF3B4F3A3F81346913A340140DF96756484D615902125B6995A5" />
+    <Document FullPath="C:\Users\Eric!\documents\visual studio 2013\Projects\Invoices\Invoices\Invoices.DesktopClient\Properties\Client.lsml" Checksum="ECDAC94C92942CF1954CA8A3AAE369F87C790A26C929D5498AA2EE942127F65A" />
+    <Document FullPath="C:\Users\Eric!\documents\visual studio 2013\Projects\Invoices\Invoices\Invoices.DesktopClient\Properties\Proxies.lsml" Checksum="0EADDF320C2D015EB570B21DE5817FEC1F716D6859C110DB452D3B0E5776DCED" />
+    <Document FullPath="C:\Users\Eric!\documents\visual studio 2013\Projects\Invoices\Invoices\Invoices.DesktopClient\Screens\MainScreen.lsml" Checksum="8A5580749E5AB7A41CE7CA6DA4E12FE9B978DA164BFD6B50E87120A7371DBD19" />
+    <Document FullPath="C:\Users\Eric!\documents\visual studio 2013\Projects\Invoices\Invoices\Invoices.DesktopClient\Screens\NewInvoiceScreen.lsml" Checksum="9532BA7741AFF9C1B8A9178F9F02819F4BF35488A6DAAC7608BEC11DECB2B870" />
+    <Document FullPath="C:\Users\Eric!\documents\visual studio 2013\Projects\Invoices\Invoices\Invoices.DesktopClient\Screens\PrintScreen.lsml" Checksum="9152811FBC7CFC307C85B135F805BB5DA14897D8E28E18178DD51FA1D91CF523" />
+    <Document FullPath="C:\Users\Eric!\documents\visual studio 2013\Projects\Invoices\Invoices\Invoices.DesktopClient\Properties\ApplicationData\InvoiceDetails.lsml" Checksum="70936968A3B0F6BF8866B20BB081578E21255593E38E5486F3EEA14C283D17A9" />
+  </Documents>
+</ModelDocumentManifest>

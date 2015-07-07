@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" Namespace="LightSwitchApplication" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Phone" Type="Edm.String" MaxLength="255" />
+    <Property Name="Address" Type="Edm.String" MaxLength="255" />
+    <Property Name="CreatedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Created" Type="Edm.DateTimeOffset" />
+    <Property Name="ModifiedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Modified" Type="Edm.DateTimeOffset" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Invoices" Relationship="LightSwitchApplication.Customer_Invoice" ToRole="Invoice" FromRole="Customer" />
+    <NavigationProperty Name="Storages" Relationship="LightSwitchApplication.Customer_Storage" ToRole="Storage" FromRole="Customer" />
+  </EntityType>
+  <EntityType Name="InvoiceDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Comments" Type="Edm.String" MaxLength="255" />
+    <Property Name="InvoiceDetail_Invoice" Type="Edm.Int32" Nullable="false" />
+    <Property Name="AmountDue" Type="Edm.Decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Created" Type="Edm.DateTimeOffset" />
+    <Property Name="ModifiedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Modified" Type="Edm.DateTimeOffset" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Invoice" Relationship="LightSwitchApplication.InvoiceDetail_Invoice" ToRole="Invoice" FromRole="InvoiceDetail" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceDate" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="InvoiceID" Type="Edm.String" MaxLength="255" />
+    <Property Name="IsActive" Type="Edm.Binary" MaxLength="Max" />
+    <Property Name="Customer_Invoice" Type="Edm.Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Created" Type="Edm.DateTimeOffset" />
+    <Property Name="ModifiedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Modified" Type="Edm.DateTimeOffset" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="InvoiceDetails" Relationship="LightSwitchApplication.InvoiceDetail_Invoice" ToRole="InvoiceDetail" FromRole="Invoice" />
+    <NavigationProperty Name="Customer" Relationship="LightSwitchApplication.Customer_Invoice" ToRole="Customer" FromRole="Invoice" />
+  </EntityType>
+  <EntityType Name="Storage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StorageNumber" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Price" Type="Edm.Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Customer_Storage" Type="Edm.Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Created" Type="Edm.DateTimeOffset" />
+    <Property Name="ModifiedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Modified" Type="Edm.DateTimeOffset" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Customer" Relationship="LightSwitchApplication.Customer_Storage" ToRole="Customer" FromRole="Storage" />
+  </EntityType>
+  <Association Name="Customer_Invoice">
+    <End Role="Customer" Type="LightSwitchApplication.Customer" Multiplicity="1" />
+    <End Role="Invoice" Type="LightSwitchApplication.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="Customer_Invoice" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Customer_Storage">
+    <End Role="Customer" Type="LightSwitchApplication.Customer" Multiplicity="1" />
+    <End Role="Storage" Type="LightSwitchApplication.Storage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Storage">
+        <PropertyRef Name="Customer_Storage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InvoiceDetail_Invoice">
+    <End Role="Invoice" Type="LightSwitchApplication.Invoice" Multiplicity="1" />
+    <End Role="InvoiceDetail" Type="LightSwitchApplication.InvoiceDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InvoiceDetail">
+        <PropertyRef Name="InvoiceDetail_Invoice" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ApplicationData" m:IsDefaultEntityContainer="true">
+    <EntitySet Name="Customers" EntityType="LightSwitchApplication.Customer" />
+    <EntitySet Name="InvoiceDetails" EntityType="LightSwitchApplication.InvoiceDetail" />
+    <EntitySet Name="Invoices" EntityType="LightSwitchApplication.Invoice" />
+    <EntitySet Name="Storages" EntityType="LightSwitchApplication.Storage" />
+    <AssociationSet Name="Customer_Invoice" Association="LightSwitchApplication.Customer_Invoice">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="Customer_Storage" Association="LightSwitchApplication.Customer_Storage">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Storage" EntitySet="Storages" />
+    </AssociationSet>
+    <AssociationSet Name="InvoiceDetail_Invoice" Association="LightSwitchApplication.InvoiceDetail_Invoice">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="InvoiceDetail" EntitySet="InvoiceDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,6 @@
+Invoices.Server.Properties.Service.lsml
+Invoices.Server.Properties.DataSources.ApplicationData.lsml
+Invoices.Server.DataSources.ApplicationData.Customers.lsml
+Invoices.Server.DataSources.ApplicationData.Storages.lsml
+Invoices.Server.DataSources.ApplicationData.Invoices.lsml
+Invoices.Server.DataSources.ApplicationData.InvoiceDetails.lsml
